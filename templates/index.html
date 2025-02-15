@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Pediátrico - Tratamiento del Asma en Niños</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3f2fd; /* Fondo azul claro, temático para medicina */
+            color: #333;
+        }
+
+        /* Contenedor principal */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        /* Imagen */
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Título */
+        h1 {
+            color: #007BFF; /* Azul médico */
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        /* Subtítulo */
+        h2 {
+            color: #555;
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        /* Formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007BFF;
+        }
+
+        input[type="submit"] {
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* Botón de limpiar */
+        .btn-limpiar {
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-limpiar:hover {
+            background-color: #5a6268;
+        }
+
+        /* Respuesta */
+        .respuesta {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #007BFF;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .respuesta h3 {
+            color: #007BFF;
+            margin-top: 0;
+        }
+
+        .respuesta p {
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        footer a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .developer-info {
+            font-size: 1rem;
+            color: #555;
+            margin-top: 10px;
+        }
+
+        .developer-info strong {
+            color: #007BFF;
+        }
+
+        /* Estilo adicional para la imagen de la niña */
+        .imagen-nina {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Imagen de la niña -->
+        <img src="{{ url_for('static', path='cute-little-girl-having-difficulty-600nw-2274540813.webp') }}" alt="Niña con asma" class="imagen-nina">
+
+        <!-- Título y subtítulo -->
+        <h1>Asistente Pediátrico</h1>
+        <h2>Tratamiento del Asma en Niños</h2>
+
+        <!-- Formulario -->
+        <form id="consultaForm" action="/consulta" method="post">
+            <input type="text" name="tema" id="tema" placeholder="Ingresa tu consulta sobre el asma en niños..." required>
+            <div style="display: flex; gap: 10px;">
+                <input type="submit" value="Obtener Respuesta">
+                <button type="button" class="btn-limpiar" onclick="limpiarFormulario()">Limpiar</button>
+            </div>
+        </form>
+
+        <!-- Respuesta -->
+        {% if respuesta %}
+        <div class="respuesta">
+            <h3>Respuesta:</h3>
+            <p>{{ respuesta }}</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="developer-info">
+            Desarrollado por <strong>Alberto Enrique Díaz Letelier</strong> | Chile
+        </div>
+        <div>
+            <a href="#" target="_blank">Developer AI</a>
+        </div>
+    </footer>
+
+    <!-- Script para limpiar el formulario -->
+    <script>
+        function limpiarFormulario() {
+            // Limpiar el campo de texto
+            document.getElementById("tema").value = "";
+
+            // Ocultar la respuesta si está visible
+            const respuestaDiv = document.querySelector(".respuesta");
+            if (respuestaDiv) {
+                respuestaDiv.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
