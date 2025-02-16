@@ -28,8 +28,17 @@ templates = Jinja2Templates(directory="templates")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
 
+# Ajustar la ruta del PDF a una ruta relativa
+current_dir = os.path.dirname(os.path.abspath(__file__))
+pdf_path = os.path.join(current_dir, "pdfs", "08_tratamiento_asma.pdf")
+
+# Verificar si el archivo existe antes de cargarlo
+if not os.path.exists(pdf_path):
+    raise FileNotFoundError(f"El archivo PDF no se encontró en: {pdf_path}")
+
+print(f"📄 Cargando PDF desde: {pdf_path}")  # Depuración en logs de Render
+
 # Cargar y procesar el PDF
-pdf_path = "/home/albertaker/proy_LLM/mi_proyecto_llm/pdfs/08_tratamiento_asma.pdf"
 loader = PyPDFLoader(pdf_path)
 documents = loader.load()
 
