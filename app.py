@@ -11,7 +11,8 @@ from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_community.vectorstores import Chroma  # Usamos Chroma en lugar de FAISS
 import os
 from dotenv import load_dotenv
-
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_core.runnables import RunnableSequence
 # Cargar variables de entorno
 load_dotenv()
 
@@ -27,6 +28,7 @@ templates = Jinja2Templates(directory="templates")
 # Inicializar el modelo de OpenAI
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 llm = ChatOpenAI(openai_api_key=OPENAI_API_KEY)
+
 
 # Ajustar la ruta del PDF a una ruta relativa
 current_dir = os.path.dirname(os.path.abspath(__file__))
